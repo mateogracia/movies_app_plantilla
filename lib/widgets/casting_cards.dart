@@ -5,17 +5,18 @@ import 'package:provider/provider.dart';
 import '../models/models.dart';
 
 class CastingCards extends StatelessWidget {
-  final int idPeli;
+  final List<Cast> actors;
   /* final List<Cast> casting; */
 
-  const CastingCards(this.idPeli,/*  this.casting */);
+  const CastingCards( {super.key,  required this.actors}/*  this.casting */);
+    
 
   @override
   Widget build(BuildContext context) {
-    final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
+    /*final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
     moviesProvider.getActores();
     print('prueba Castingcards');
-    print(moviesProvider.actores);/* 
+    print(moviesProvider.actores); 
     */ 
 
     return Container(
@@ -24,14 +25,14 @@ class CastingCards extends StatelessWidget {
             height: 180,
             // color: Colors.red,
             child: ListView.builder(
-                itemCount: moviesProvider.actores.length,
+                itemCount: actors.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context,
                         int index) /* {
                 return _CastCard(casting[index]);
               }, */
                     =>
-                     _CastCard(/* casting[index] */  moviesProvider.actores,   index)),
+                     _CastCard(/* casting[index] */  actors[index]/* ,   index */)),
           );
         }
 
@@ -78,20 +79,21 @@ class CastingCards extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) =>
               _CastCard(casting[index])),
     );*/
-  /* }  */
-}
+  }
+ 
+/* } */
 
 class _CastCard extends StatelessWidget {
-  final List<Cast>   cast;
-  final int index;
+  final Cast   cast;
+  /* final int index; */
   
   const 
-  _CastCard(this.cast, this.index);
+  _CastCard(this.cast/* , this.index */);
 
   @override
   Widget build(BuildContext context) {
-    final castInd= cast[index];
-    print('prueba _MoviePoster');   
+    /* final castInd= cast[index];
+    print('prueba _MoviePoster');    */
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -104,7 +106,7 @@ class _CastCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage(castInd.fullProfilePath /* 'assets/no-image.jpg' */),
+              image: NetworkImage(cast.fullProfilePath /* 'assets/no-image.jpg' */),
               height: 140,
               width: 100,
               fit: BoxFit.cover,
@@ -114,7 +116,7 @@ class _CastCard extends StatelessWidget {
             height: 5,
           ),
           Text(
-            castInd.name /* 'actor' */,
+            cast.name /* 'actor' */,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,

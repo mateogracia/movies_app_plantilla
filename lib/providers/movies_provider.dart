@@ -56,8 +56,7 @@ class MoviesProvider extends ChangeNotifier {
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     final result = await http.get(
         url); //final que almacena el contenido de la peticion a la API en formato JSON
-    print('result getmovies');
-    print(result);
+    
 
     final nowPlayingResponse = NowPlayingResponse.fromJson(result
         .body); //final que almacena el body de la peticion hecha usando la estructura de la clase NowPlayingResponse
@@ -81,8 +80,7 @@ class MoviesProvider extends ChangeNotifier {
 
     final result = await http.get(url);
     //final que almacena el contenido de la peticion a la API en formato JSON
-    print('result popmovies');
-    print(result);
+    
 
     final popularResponse = PopularResponse.fromJson(result.body);
     //final que almacena el body de la peticion hecha usando la estructura de la clase NowPlayingResponse
@@ -98,12 +96,13 @@ class MoviesProvider extends ChangeNotifier {
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   //Metodo que hace la llamada a la API para que la variable actores (lista de cast) obtenga todos los actores de la peli
-  getActores(/* int idMovie */) async {
-    
+  getActores(int idMovie) async {
+     print(' getactores');
 
     //creo una variable que almacenará el URL que se pasará a la API yq de la cual obtendremos su información    $idMovie
-    var url = Uri.https(baseURL, '3/movie/505642/credits',
+    var url = Uri.https(baseURL, '3/movie/$idMovie/credits',
         {'api_key': apiKey, 'language': language});
+        print(url);
         
     //EL PROBLEMA ESTA AQUIIIIIIIIII!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     final result = await http.get(url);

@@ -59,7 +59,7 @@ class _MoviePoster extends StatelessWidget {
     final popmovieInd= popmovie[indice];
     /* final Movie peli =
         popmovieInd as Movie; */
-    print('prueba _MoviePoster');
+    
     return Container(
       width: 130,
       height: 190,

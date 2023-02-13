@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/models.dart';
 import 'package:movies_app/widgets/widgets.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/movies_provider.dart';
 
 class DetailsScreen extends StatelessWidget {
  
@@ -11,6 +14,9 @@ class DetailsScreen extends StatelessWidget {
     final Movie peli =
         ModalRoute.of(context)?.settings.arguments as Movie;
 
+        final moviesProvider = Provider.of<MoviesProvider>(context);
+        moviesProvider.getActores;
+
 
     return Scaffold(
       body: CustomScrollView(
@@ -20,8 +26,10 @@ class DetailsScreen extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 _PosterAndTitile(movie: peli),
-                _Overview(movie: peli),                              
-                CastingCards(peli.id,),
+                _Overview(movie: peli),    
+                moviesProvider.actores.isEmpty
+                ?CircularProgressIndicator()                          
+                :CastingCards(actors: moviesProvider.actores),
                 
               ],
             ),

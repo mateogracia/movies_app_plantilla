@@ -39,7 +39,7 @@ class CardSwiper extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             //variable que almacena la movie individual
             final movie= movies[index];
-            final pp= movie.fullPosterPath;
+            
             
 
             return GestureDetector(
